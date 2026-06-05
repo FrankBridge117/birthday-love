@@ -14,12 +14,13 @@
     <audio id="musica-beatles" loop>
         <source src="/audio/Here_Comes_The_Sun.mp3" type="audio/mpeg">
     </audio>
+
     <section id="bienvenida" class="seccion-cielo">
-      <div id="burbujas-background"></div>
+        <div id="burbujas-background"></div>
         <div class="contenedor-burbuja" data-aos="zoom-in">
             <img src="/images/burbuja.png" alt="Burbuja" class="burbuja-animada">
             <h1>¡Hola, <%= nombreNovia %>!</h1>
-            <p>!FELIZ CUMPLEAÑOS, PRECIOSA! ESTO ES PARA TII... ¡Truena las burbujas para que lo pruebes!</p>
+            <p>¡FELIZ CUMPLEAÑOS, PRECIOSA! ESTO ES PARA TII... ¡Truena las burbujas para que lo pruebes!</p>
             <button id="btn-entrar" onclick="iniciarExperiencia()">VE LO DEMÁS...</button>
         </div>
     </section>
@@ -37,7 +38,6 @@
                 <img src="/images/perrito_tierno.png" alt="Perrito">
                 <span class="tooltip-perrito">¡GUAF GUAF GUAF Hazme clic!</span>
             </div>
-            
             <div class="trebol-interactivo" onclick="revelarDatoCurioso(this)">🍀</div>
         </div>
     </section>
@@ -49,15 +49,37 @@
         <div class="pastel-contenedor" onclick="revelarSobre()">
             <img src="/images/pastel_red_velvet.png" id="pastel-img" alt="Pastel Red Velvet">
         </div>
+
         <div id="contenedor-sobre" class="wrapper-sobre oculto">
             <div class="envelope" onclick="abrirCarta()">
                 <div class="flap"></div>
                 <div class="body"></div>
                 <div class="letter">
                     <div class="letter-content">
+                        <button class="btn-cerrar-carta" onclick="cerrarCarta(event)"> Guardar carta</button>
                         <div id="pdf-viewer"></div>
                     </div>
                 </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="final-seccion" class="seccion-final">
+        <div id="patitos-background"></div>
+        <div class="contenedor-final" data-aos="zoom-in">
+            <div class="marco-foto">
+                <img src="/images/SHE.jpeg" alt="Mi Niña Hermosa" class="foto-novia">
+            </div>
+            <div class="texto-final">
+                <h2>Para la dueña de mi corazón ❤️</h2>
+                <p>
+                    ¡FELICES 18 AÑOS! ¡FELIZ LEGALIDAD, NIÑA LINDA! Estoy muy muy 
+                    sorprendido que ya eres toda una mujer, y aunque me da un poquito de miedo, también me emociona mucho pensar 
+                    en todo lo que nos espera juntos. Gracias por ser tan increíble, por tu sonrisa que ilumina mis días y por 
+                    ser la persona maravillosa que eres. Te amo con todo mi corazón y espero que este día sea tan especial 
+                    como tú lo eres para mí. Y te vuelvo a recordar que a pesar de ya ser mayor, siempre serás esa pequeñita linda e inocente. 
+                    Esa bebita que hace ayeres nació y esa chiquilla que hace unos ayeres conocí. Le agradezco a Dios porque permitió que llegaras a mi vida. ¡Feliz cumpleaños, mi amor!
+                </p>
             </div>
         </div>
     </section>
