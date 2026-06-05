@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>¡Happy Birthday!</title>
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Quicksand:wght@500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.4.120/pdf.min.js"></script>
+</head>
+<body>
+    <audio id="musica-beatles" loop>
+        <source src="/audio/Here_Comes_The_Sun.mp3" type="audio/mpeg">
+    </audio>
+    <section id="bienvenida" class="seccion-cielo">
+      <div id="burbujas-background"></div>
+        <div class="contenedor-burbuja" data-aos="zoom-in">
+            <img src="/images/burbuja-personaje.png" alt="Burbuja" class="burbuja-animada">
+            <h1>¡Hola, <%= nombreNovia %>!</h1>
+            <p>!FELIZ CUMPLEAÑOS, PRECIOSA! ESTO ES PARA TII... ¡Truena las burbujas para que lo pruebes!</p>
+            <button id="btn-entrar" onclick="iniciarExperiencia()">VE LO DEMÁS...</button>
+        </div>
+    </section>
+
+    <section id="jardin" class="seccion-jardin" data-aos="fade-up">
+        <div class="jardin-header">
+            <h2>PARA TIIII.🍀</h2>
+            <p>Pon tu dedito en los tréboles y acaricia al perrito para ver más.</p>
+        </div>
+        
+        <div class="elementos-jardin">
+            <div class="trebol-interactivo" onclick="revelarDatoCurioso(this)">🍀</div>
+            <div class="trebol-interactivo" onclick="revelarDatoCurioso(this)">🍀</div>
+            <div class="perrito-interactivo" onclick="ladrarYDarSorpresa()">
+                <img src="/images/perrito_tierno.png" alt="Perrito">
+                <span class="tooltip-perrito">¡GUAF GUAF GUAF Hazme clic!</span>
+            </div>
+            
+            <div class="trebol-interactivo" onclick="revelarDatoCurioso(this)">🍀</div>
+        </div>
+    </section>
+
+    <section id="pastel-seccion" class="seccion-pastel" data-aos="zoom-in">
+        <h2>¡Aquí tienes tu pastel, mi niña linda chula!</h2>
+        <p class="instruccion-pastel">¡Haz clic en el pastel para revelar otra sorpresa!</p>
+        
+        <div class="pastel-contenedor" onclick="revelarSobre()">
+            <img src="/images/pastel_red_velvet.png" id="pastel-img" alt="Pastel Red Velvet">
+        </div>
+        <div id="contenedor-sobre" class="wrapper-sobre oculto">
+            <div class="envelope" onclick="abrirCarta()">
+                <div class="flap"></div>
+                <div class="body"></div>
+                <div class="letter">
+                    <div class="letter-content">
+                        <div id="pdf-viewer"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    <script src="/js/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,392 @@
+:root {
+    --color-cielo: #e0f2fe;
+    --color-nube: #ffffff;
+    --color-jardin: #e8f5e9;
+    --color-trebol: #4caf50;
+    --color-pastel-base: #fff5f5;
+    --color-red-velvet: #bb0a1e;
+    --color-sobre-exterior: #f08080;
+    --color-sobre-interior: #f49797;
+    --color-sobre-tapa: #de6b6b;
+    --fuente-titulos: 'Fredoka One', cursive;
+    --fuente-cuerpo: 'Quicksand', sans-serif;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-shadow: border-box;
+    font-family: var(--fuente-cuerpo);
+    -webkit-tap-highlight-color: transparent;
+}
+
+body, html {
+    width: 100%;
+    overflow-x: hidden;
+    scroll-behavior: smooth;
+    background-color: var(--color-cielo);
+}
+
+h1, h2, h3 {
+    font-family: var(--fuente-titulos);
+    color: #333;
+    text-align: center;
+}
+
+section {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 40px 20px;
+    position: relative;
+    box-sizing: border-box;
+}
+
+
+.seccion-cielo {
+    background: linear-gradient(180deg, #bae6fd 0%, var(--color-cielo) 100%);
+    overflow: hidden;
+}
+
+#burbujas-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    pointer-events: none;
+}
+
+.burbuja-flotante {
+    position: absolute;
+    bottom: -100px;
+    background: rgba(255, 255, 255, 0.4);
+    border: 1px solid rgba(255, 255, 255, 0.6);
+    border-radius: 50%;
+    box-shadow: inset 0 0 10px rgba(255, 255, 255, 0.5);
+    animation: flotarBurbuja 8s infinite linear;
+    cursor: pointer;
+    pointer-events: all;
+}
+
+.burbuja-flotante::before {
+    content: '';
+    position: absolute;
+    top: 10%;
+    left: 15%;
+    width: 20%;
+    height: 20%;
+    background: rgba(255, 255, 255, 0.7);
+    border-radius: 50%;
+}
+
+.contenedor-burbuja {
+    z-index: 2;
+    background: rgba(255, 255, 255, 0.75);
+    backdrop-filter: blur(8px);
+    padding: 40px;
+    border-radius: 30px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.05);
+    text-align: center;
+    max-width: 500px;
+    border: 2px solid rgba(255, 255, 255, 0.5);
+}
+
+.contenedor-burbuja h1 {
+    font-size: 2.8rem;
+    color: #0284c7;
+    margin-bottom: 15px;
+}
+
+.contenedor-burbuja p {
+    font-size: 1.2rem;
+    color: #475569;
+    margin-bottom: 25px;
+    line-height: 1.6;
+}
+
+.burbuja-animada {
+    width: 140px;
+    height: auto;
+    margin-bottom: 15px;
+    animation: flotarPersonaje 4s ease-in-out infinite;
+}
+
+#btn-entrar {
+    font-family: var(--fuente-titulos);
+    background: linear-gradient(135deg, #38bdf8 0%, #0284c7 100%);
+    color: white;
+    border: none;
+    padding: 15px 35px;
+    font-size: 1.3rem;
+    border-radius: 50px;
+    cursor: pointer;
+    box-shadow: 0 10px 25px rgba(2, 132, 199, 0.3);
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+#btn-entrar:hover {
+    transform: scale(1.08) translateY(-3px);
+    box-shadow: 0 15px 30px rgba(2, 132, 199, 0.4);
+}
+
+.seccion-jardin {
+    background: linear-gradient(180deg, var(--color-cielo) 0%, var(--color-jardin) 100%);
+}
+
+.jardin-header h2 {
+    font-size: 2.5rem;
+    color: #2e7d32;
+    margin-bottom: 10px;
+}
+
+.jardin-header p {
+    font-size: 1.1rem;
+    color: #558b2f;
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.elementos-jardin {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 50px;
+    flex-wrap: wrap;
+    margin-top: 20px;
+}
+
+.trebol-interactivo {
+    font-size: 3.5rem;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+    user-select: none;
+    animation: pulsoSuave 3s infinite ease-in-out;
+}
+
+.trebol-interactivo:hover {
+    transform: scale(1.4) rotate(20deg);
+}
+
+.perrito-interactivo {
+    position: relative;
+    cursor: pointer;
+    transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.perrito-interactivo img {
+    width: 180px;
+    height: auto;
+    filter: drop-shadow(0 10px 15px rgba(0,0,0,0.1));
+}
+
+.perrito-interactivo:hover {
+    transform: scale(1.1) translateY(-5px);
+}
+
+.tooltip-perrito {
+    position: absolute;
+    bottom: -30px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: #333;
+    color: white;
+    padding: 5px 12px;
+    border-radius: 15px;
+    font-size: 0.85rem;
+    white-space: nowrap;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    pointer-events: none;
+}
+
+.perrito-interactivo:hover .tooltip-perrito {
+    opacity: 1;
+}
+
+.seccion-pastel {
+    background: linear-gradient(180deg, var(--color-jardin) 0%, var(--color-pastel-base) 100%);
+}
+
+.seccion-pastel h2 {
+    font-size: 2.5rem;
+    color: var(--color-red-velvet);
+    margin-bottom: 5px;
+}
+
+.instruccion-pastel {
+    color: #88333d;
+    margin-bottom: 30px;
+    font-weight: 500;
+}
+
+.pastel-contenedor {
+    cursor: pointer;
+    transition: transform 0.3s ease;
+    margin-bottom: 40px;
+}
+
+.pastel-contenedor img {
+    width: 220px;
+    height: auto;
+    filter: drop-shadow(0 15px 20px rgba(187, 10, 30, 0.15));
+    animation: flotarPersonaje 5s ease-in-out infinite;
+}
+
+.pastel-contenedor:hover {
+    transform: scale(1.05) rotate(-3deg);
+}
+
+.wrapper-sobre {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    perspective: 1200px;
+    margin-top: 20px;
+    width: 100%;
+    height: 380px;
+}
+
+.envelope {
+    position: relative;
+    width: 480px;
+    height: 320px;
+    background-color: var(--color-sobre-exterior);
+    box-shadow: 0 15px 35px rgba(0,0,0,0.15);
+    cursor: pointer;
+    border-radius: 0 0 12px 12px;
+    transition: transform 0.5s ease;
+}
+
+.envelope:hover {
+    transform: translateY(-5px);
+}
+
+.flap {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 0;
+    height: 0;
+    border-left: 240px solid transparent;
+    border-right: 240px solid transparent;
+    border-top: 160px solid var(--color-sobre-tapa);
+    transform-origin: top;
+    transition: transform 0.4s ease-in-out, z-index 0.4s;
+    z-index: 3;
+}
+
+.body {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 0;
+    border-left: 240px solid var(--color-sobre-interior);
+    border-right: 240px solid var(--color-sobre-interior);
+    border-bottom: 160px solid #e57373;
+    z-index: 2;
+    border-radius: 0 0 12px 12px;
+}
+
+.letter {
+    position: absolute;
+    top: 15px;
+    left: 20px;
+    width: 440px;
+    height: 290px;
+    background-color: #ffffff;
+    box-sizing: border-box;
+    border-radius: 8px;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.1);
+    z-index: 1;
+    transition: transform 0.7s cubic-bezier(0.19, 1, 0.22, 1), height 0.7s, z-index 0.7s;
+    overflow-y: auto;
+    overflow-x: hidden;
+    padding: 10px;
+}
+
+.letter::-webkit-scrollbar {
+    width: 6px;
+}
+.letter::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 10px;
+}
+.letter::-webkit-scrollbar-thumb {
+    background: #c1c1c1;
+    border-radius: 10px;
+}
+
+.envelope.open .flap {
+    transform: rotateX(180deg);
+    z-index: 0;
+}
+
+.envelope.open .letter {
+    transform: translateY(-340px);
+    height: 620px; 
+    box-shadow: 0 20px 45px rgba(0,0,0,0.25);
+}
+
+#pdf-viewer canvas {
+    width: 100% !important;
+    height: auto !important;
+    margin-bottom: 12px;
+    border-radius: 6px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+}
+
+.oculto {
+    display: none !important;
+}
+
+@keyframes flotarPersonaje {
+    0% { transform: translateY(0px); }
+    50% { transform: translateY(-12px); }
+    100% { transform: translateY(0px); }
+}
+
+@keyframes flotarBurbuja {
+    0% { transform: translateY(0) translateX(0); opacity: 0; }
+    10% { opacity: 1; }
+    90% { opacity: 1; }
+    100% { transform: translateY(-120vh) translateX(50px); opacity: 0; }
+}
+
+@keyframes pulsoSuave {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+    100% { transform: scale(1); }
+}
+
+/* Responsive para Pantallas Móviles */
+@media (max-width: 520px) {
+    .envelope {
+        width: 340px;
+        height: 230px;
+    }
+    .flap {
+        border-left-width: 170px;
+        border-right-width: 170px;
+        border-top-width: 115px;
+    }
+    .body {
+        border-left-width: 170px;
+        border-right-width: 170px;
+        border-bottom-width: 115px;
+    }
+    .letter {
+        width: 310px;
+        height: 205px;
+        left: 15px;
+    }
+    .envelope.open .letter {
+        transform: translateY(-240px);
+        height: 460px;
+    }
+    .contenedor-burbuja h1 { font-size: 2.1rem; }
+}
