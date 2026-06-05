@@ -7,9 +7,6 @@ window.addEventListener('DOMContentLoaded', () => {
     generarPatitosInfinitos();
 });
 
-// ==========================================================================
-// 🫧 BURBUJAS EN TODA LA PÁGINA
-// ==========================================================================
 function generarBurbujasDecorativas() {
     const contenedores = [
         document.getElementById('burbujas-background'), 
@@ -18,9 +15,7 @@ function generarBurbujasDecorativas() {
     
     contenedores.forEach(contenedor => {
         if (!contenedor) return;
-        // Inyectar burbujas iniciales
         for (let i = 0; i < 20; i++) { crearBurbuja(contenedor); }
-        // Flujo constante acelerado
         setInterval(() => { crearBurbuja(contenedor); }, 1200);
     });
 }
@@ -65,9 +60,6 @@ function iniciarExperiencia() {
     document.getElementById('jardin')?.scrollIntoView({ behavior: 'smooth' });
 }
 
-// ==========================================================================
-// 🍀 JARDÍN
-// ==========================================================================
 const frasesTréboles = [
     "Sabías que... ¡Eres una niña maravillosa con las mejores ideas del mundo entero! Sobrepasas tu gran creatividad.",
     "Tip de felicidad: Un trébol me dijo que tu sonrisa ilumina hasta el día más gris.",
@@ -87,9 +79,6 @@ function ladrarYDarSorpresa() {
     alert("Guauf guauf guauf guauf: Eres la novia más hermosa, auténtica y especial de todo el universo entero. No importa cuánto llegues a crecer, siempre te amaré y siempre serás ante mis ojos la niña, la chica, la mujer, la damita de mi vida. JAMÁS DUDES QUE TE AMOOOO MUCHÍSIMO.❤️");
 }
 
-// ==========================================================================
-// 🍰 PASTEL Y SOBRE 3D
-// ==========================================================================
 function revelarSobre() {
     confetti({ particleCount: 150, spread: 80, colors: ['#bb0a1e', '#ffffff', '#ffb3c1'] });
     const sobre = document.getElementById('contenedor-sobre');
@@ -111,7 +100,6 @@ function abrirCarta() {
     }
 }
 
-// ARREGLO CRÍTICO: Detiene la propagación y quita la clase de apertura de golpe
 function cerrarCarta(event) {
     event.stopPropagation(); 
     const envelope = document.querySelector('.envelope');
@@ -147,9 +135,6 @@ function cargarCartitaPDF(url) {
     });
 }
 
-// ==========================================================================
-// 🐥 PATITOS AMARILLOS FLOTANTES
-// ==========================================================================
 function generarPatitosInfinitos() {
     const contenedor = document.getElementById('patitos-background');
     if (!contenedor) return;

@@ -43,9 +43,6 @@ section {
     position: relative;
 }
 
-/* ==========================================================================
-   🫧 SECCIÓN 1: BIENVENIDA Y BURBUJAS
-   ========================================================================== */
 .seccion-cielo {
     background: linear-gradient(180deg, #bae6fd 0%, var(--color-cielo) 100%);
     overflow: hidden;
@@ -122,9 +119,6 @@ section {
 }
 #btn-entrar:hover { transform: scale(1.08) translateY(-3px); box-shadow: 0 15px 30px rgba(2, 132, 199, 0.4); }
 
-/* ==========================================================================
-   🍀 SECCIÓN 2: JARDÍN
-   ========================================================================== */
 .seccion-jardin { background: linear-gradient(180deg, var(--color-cielo) 0%, var(--color-jardin) 100%); }
 .jardin-header h2 { font-size: 2.5rem; color: #2e7d32; margin-bottom: 10px; }
 .jardin-header p { font-size: 1.1rem; color: #558b2f; text-align: center; margin-bottom: 40px; }
@@ -137,9 +131,6 @@ section {
 .tooltip-perrito { position: absolute; bottom: -30px; left: 50%; transform: translateX(-50%); background: #333; color: white; padding: 5px 12px; border-radius: 15px; font-size: 0.85rem; white-space: nowrap; opacity: 0; transition: opacity 0.3s ease; pointer-events: none; }
 .perrito-interactivo:hover .tooltip-perrito { opacity: 1; }
 
-/* ==========================================================================
-   🍰 SECCIÓN 3: PASTEL Y SOBRE 3D EXPANDIDO
-   ========================================================================== */
 .seccion-pastel { background: linear-gradient(180deg, var(--color-jardin) 0%, var(--color-pastel-base) 100%); }
 .seccion-pastel h2 { font-size: 2.5rem; color: var(--color-red-velvet); margin-bottom: 5px; }
 .instruccion-pastel { color: #88333d; margin-bottom: 30px; font-weight: 500; }
@@ -168,7 +159,6 @@ section {
     overflow-y: auto;
 }
 
-/* Apertura completa de la carta en pantalla fija */
 .envelope.open .flap { transform: rotateX(180deg); z-index: 0; }
 .envelope.open .letter {
     position: fixed;
@@ -178,7 +168,7 @@ section {
     width: 90vw;
     max-width: 650px;
     height: 85vh;
-    z-index: 99999 !important; /* Garantiza que tape todo */
+    z-index: 99999 !important;
     box-shadow: 0 30px 70px rgba(0,0,0,0.4);
     border: 3px solid #ffb3c1;
 }
@@ -208,9 +198,6 @@ section {
     box-shadow: 0 5px 15px rgba(0,0,0,0.06);
 }
 
-/* ==========================================================================
-   🐥 SECCIÓN 4: FINAL Y PATITOS AMARILLOS
-   ========================================================================== */
 .seccion-final {
     background: linear-gradient(180deg, var(--color-pastel-base) 0%, #fef08a 100%);
     overflow: hidden;
@@ -243,9 +230,10 @@ section {
 }
 
 .marco-foto {
-    width: 180px;
-    height: 180px;
-    border-radius: 50%;
+    max-width: 90%;          
+    width: 450px; 
+    height: auto;           
+    border-radius: 20px;     
     overflow: hidden;
     margin: 0 auto 25px auto;
     border: 6px solid #ffffff;
@@ -254,9 +242,10 @@ section {
 }
 
 .foto-novia {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
+    width: 100%; 
+    height: auto;
+    display: block;
+    object-fit: contain; 
 }
 
 .texto-final h2 { color: #ca8a04; font-size: 2.2rem; margin-bottom: 15px; }
@@ -264,9 +253,6 @@ section {
 
 .oculto { display: none !important; }
 
-/* ==========================================================================
-   🎬 ANIMACIONES
-   ========================================================================== */
 @keyframes flotarPersonaje { 0%, 100% { transform: translateY(0px); } 50% { transform: translateY(-12px); } }
 @keyframes pulsoSuave { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.05); } }
 
