@@ -1,47 +1,59 @@
-AOS.init({
-    duration: 1000,
-    once: true
-});
-
+// Inicializadores globales
+AOS.init({ duration: 1000, once: true });
 pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.4.120/pdf.worker.min.js';
 
 window.addEventListener('DOMContentLoaded', () => {
     generarBurbujasDecorativas();
+    generarPatitosInfinitos();
 });
 
+// ==========================================================================
+// 🫧 BURBUJAS EN TODA LA PÁGINA
+// ==========================================================================
 function generarBurbujasDecorativas() {
-    const contenedor = document.getElementById('burbujas-background');
-    if (!contenedor) return;
-
-    for (let i = 0; i < 15; i++) {
-        crearBurbuja(contenedor);
-    }setInterval(() => {
-        crearBurbuja(contenedor);
-    }, 1500);
+    const contenedores = [
+        document.getElementById('burbujas-background'), 
+        document.getElementById('patitos-background')
+    ];
+    
+    contenedores.forEach(contenedor => {
+        if (!contenedor) return;
+        // Inyectar burbujas iniciales
+        for (let i = 0; i < 20; i++) { crearBurbuja(contenedor); }
+        // Flujo constante acelerado
+        setInterval(() => { crearBurbuja(contenedor); }, 1200);
+    });
 }
 
 function crearBurbuja(contenedor) {
     const burbuja = document.createElement('div');
     burbuja.classList.add('burbuja-flotante');
 
-    const tamaño = Math.random() * 50 + 30;
+    const tamaño = Math.random() * 55 + 30;
     burbuja.style.width = `${tamaño}px`;
     burbuja.style.height = `${tamaño}px`;
-    burbuja.style.left = `${Math.random() * 100}%`;const duracion = Math.random() * 6 + 6;
+    burbuja.style.left = `${Math.random() * 95}%`;
+
+    const duracion = Math.random() * 4 + 7;
     burbuja.style.animationDuration = `${duracion}s`;
-    burbuja.style.animationDelay = `${Math.random() * 4}s`;
+    burbuja.style.animationDelay = `${Math.random() * 3}s`;
+
+    burbuja.addEventListener('mouseenter', () => {
+        burbuja.style.transform = `translate(${Math.random() * 20 - 10}px, -15px) scale(1.1)`;
+    });
+    burbuja.addEventListener('mouseleave', () => { burbuja.style.transform = ''; });
+
     burbuja.addEventListener('click', () => {
-        burbuja.style.transform = 'scale(1.3)';
+        burbuja.style.transform = 'scale(1.4)';
         burbuja.style.opacity = '0';
-        burbuja.style.transition = 'all 0.1s ease';
+        
         const rect = burbuja.getBoundingClientRect();
         confetti({
-            particleCount: 8,
-            spread: 30,
+            particleCount: 10,
+            spread: 35,
             origin: { x: rect.left / window.innerWidth, y: rect.top / window.innerHeight }
         });
-
-        setTimeout(() => { burbuja.remove(); }, 100);
+        setTimeout(() => { burbuja.remove(); }, 80);
     });
 
     contenedor.appendChild(burbuja);
@@ -49,17 +61,15 @@ function crearBurbuja(contenedor) {
 
 function iniciarExperiencia() {
     const musica = document.getElementById('musica-beatles');
-    if (musica) {
-        musica.play().catch(err => console.log("Interacción requerida para audio."));
-    }
-    const seccionJardin = document.getElementById('jardin');
-    if (seccionJardin) {
-        seccionJardin.scrollIntoView({ behavior: 'smooth' });
-    }
+    if (musica) { musica.play().catch(() => console.log("Interacción requerida para audio.")); }
+    document.getElementById('jardin')?.scrollIntoView({ behavior: 'smooth' });
 }
 
+// ==========================================================================
+// 🍀 JARDÍN
+// ==========================================================================
 const frasesTréboles = [
-    "Sabías que... ¡Eres una niña maravillosa con las mejores ideas del mundo entero! Sobreppasas tu gran creatividad.",
+    "Sabías que... ¡Eres una niña maravillosa con las mejores ideas del mundo entero! Sobrepasas tu gran creatividad.",
     "Tip de felicidad: Un trébol me dijo que tu sonrisa ilumina hasta el día más gris.",
     "Eres alguien linda y admirable y trabajadora, hasta creativa, pastelito chula."
 ];
@@ -74,23 +84,18 @@ function revelarDatoCurioso(elemento) {
 
 function ladrarYDarSorpresa() {
     confetti({ particleCount: 40, spread: 50 });
-    alert("Guauf guauf guauf guauf: Eres la novia más hermosa, auténtica y especial de todo el universo entero. No importa cuánto llegues a crecer, siempre te amaré y siempre serás ante mis ojos la niña, la chica, la mujer, la damita de mi vida. JAMÁS DUDE QUE TE AMOOOO MUCHÍSIMO.❤️");
+    alert("Guauf guauf guauf guauf: Eres la novia más hermosa, auténtica y especial de todo el universo entero. No importa cuánto llegues a crecer, siempre te amaré y siempre serás ante mis ojos la niña, la chica, la mujer, la damita de mi vida. JAMÁS DUDES QUE TE AMOOOO MUCHÍSIMO.❤️");
 }
 
-
+// ==========================================================================
+// 🍰 PASTEL Y SOBRE 3D
+// ==========================================================================
 function revelarSobre() {
-    confetti({
-        particleCount: 150,
-        spread: 80,
-        colors: ['#bb0a1e', '#ffffff', '#ffb3c1']
-    });
-    
+    confetti({ particleCount: 150, spread: 80, colors: ['#bb0a1e', '#ffffff', '#ffb3c1'] });
     const sobre = document.getElementById('contenedor-sobre');
     if (sobre) {
         sobre.classList.remove('oculto');
-        setTimeout(() => {
-            sobre.scrollIntoView({ behavior: 'smooth', block: 'center' });
-        }, 300);
+        setTimeout(() => { sobre.scrollIntoView({ behavior: 'smooth', block: 'center' }); }, 300);
     }
 }
 
@@ -99,35 +104,74 @@ function abrirCarta() {
     if (envelope && !envelope.classList.contains('open')) {
         envelope.classList.add('open');
         setTimeout(() => {
-            confetti({ particleCount: 30, angle: 60, spread: 55, origin: { x: 0, y: 0.8 } });
-            confetti({ particleCount: 30, angle: 120, spread: 55, origin: { x: 1, y: 0.8 } });
-        }, 400);
+            confetti({ particleCount: 30, angle: 60, spread: 55, origin: { x: 0.1, y: 0.6 } });
+            confetti({ particleCount: 30, angle: 120, spread: 55, origin: { x: 0.9, y: 0.6 } });
+        }, 500);
         cargarCartitaPDF('/docs/Cartita.pdf');
+    }
+}
+
+// ARREGLO CRÍTICO: Detiene la propagación y quita la clase de apertura de golpe
+function cerrarCarta(event) {
+    event.stopPropagation(); 
+    const envelope = document.querySelector('.envelope');
+    if (envelope) {
+        envelope.classList.remove('open');
+        // Limpiamos estilos inline residuales que confundan al navegador móvil
+        const letter = document.querySelector('.letter');
+        if (letter) { letter.style.position = ''; letter.style.top = ''; letter.style.left = ''; }
     }
 }
 
 function cargarCartitaPDF(url) {
     const viewer = document.getElementById('pdf-viewer');
     if (!viewer || viewer.children.length > 0) return;
+
     pdfjsLib.getDocument(url).promise.then(pdf => {
-       for (let pageNum = 1; pageNum <= pdf.numPages; pageNum++) {
+        for (let pageNum = 1; pageNum <= pdf.numPages; pageNum++) {
             pdf.getPage(pageNum).then(page => {
-                const scale = 1.5;
+                const scale = 2.0; 
                 const viewport = page.getViewport({ scale: scale });
                 const canvas = document.createElement('canvas');
                 const context = canvas.getContext('2d');
                 canvas.height = viewport.height;
                 canvas.width = viewport.width;
                 viewer.appendChild(canvas);
-                const renderContext = {
-                    canvasContext: context,
-                    viewport: viewport
-                };
-                page.render(renderContext);
+                
+                page.render({ canvasContext: context, viewport: viewport });
             });
         }
     }).catch(error => {
-        console.error("Error crítico al procesar o buscar el archivo Cartita.pdf:", error);
-        viewer.innerHTML = `<p style="color:red; text-align:center; padding:20px;">¡Ups! No pudimos abrir tu cartita original en este momento. 😢</p>`;
+        console.error("Error al cargar el PDF:", error);
+        viewer.innerHTML = `<p style="color:red; text-align:center; padding:20px;">¡Ups! Tu cartita está lista pero no pudimos renderizarla en local. 😢</p>`;
     });
+}
+
+// ==========================================================================
+// 🐥 PATITOS AMARILLOS FLOTANTES
+// ==========================================================================
+function generarPatitosInfinitos() {
+    const contenedor = document.getElementById('patitos-background');
+    if (!contenedor) return;
+
+    setInterval(() => {
+        const patito = document.createElement('div');
+        patito.classList.add('patito-flotante');
+        patito.innerText = '🦆'; 
+
+        patito.style.bottom = `${Math.random() * 30 - 15}px`;
+        patito.style.left = `${Math.random() * 90}%`;
+        
+        const duracion = Math.random() * 4 + 7; 
+        patito.style.animationDuration = `${duracion}s`;
+
+        patito.addEventListener('click', () => {
+            confetti({ particleCount: 15, colors: ['#facc15', '#fef08a'], spread: 40 });
+            patito.style.transform = 'scale(0) rotate(360deg)';
+            setTimeout(() => { patito.remove(); }, 300);
+        });
+
+        contenedor.appendChild(patito);
+        setTimeout(() => { patito.remove(); }, duracion * 1000);
+    }, 2000);
 }
